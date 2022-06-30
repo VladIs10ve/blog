@@ -1,0 +1,36 @@
+{% extends 'lvlup/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+    <a href="add_post">
+        <div class="d-flex flex-column" style="width: 150px;margin-left: 40px;margin-top: 40px">
+
+            <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
+                    data-toggle="modal" data-target="#exampleModal">
+                Add Post
+            </button>
+        </div>
+    </a>
+
+    <ul>
+        {% for post in object_list %}
+            <div class="card" style="margin-right: 40px;margin-top: 50px;margin-bottom: 30px;">
+                <img class="" style="max-height:400px;min-height: 300px;object-fit: cover;" src="{{ post.image.url }}"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }} - {{ post.author }}</h5>
+                    <p class="card-text">{{ post.body }}</p>
+                    {% if user.is_authenticated %}
+                        {% if user.id == post.author.id %}
+                            <a href="{% url 'update_post' post.pk %}" class="btn btn-primary">Update</a>
+                            <a href="{% url 'delete' post.pk %}" class="btn btn-primary">Delete</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

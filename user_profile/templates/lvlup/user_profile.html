@@ -1,0 +1,130 @@
+{% extends 'lvlup/base.html' %}
+
+
+
+{% block content %}
+    {% load crispy_forms_tags %}
+
+    {% if messages %}
+        <ul class="alert alert-success">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="text-white d-flex flex-row"
+         style="background-color: #000; height:200px;border-top-left-radius: 25px;border-top-right-radius: 25px;">
+        <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;margin-left: 40px">
+            <img src="{{ user.profile.image.url }} "
+                 alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                 style="width: 150px; z-index: 1">
+            <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
+                    style="z-index: 1;"
+                    data-toggle="modal" data-target="#exampleModal">
+                Edit profile
+            </button>
+            <div class="modal fade text-dark" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="UpdateForm"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content bg-light">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="UpdateForm">Update Your Profile</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <fieldset class="form-group">
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            {{ u_form.username|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            {{ u_form.email|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            {{ p_form.about|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            {{ p_form.image|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="form-group">
+                                    <button class="btn btn-outline-info" type="submit">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ms-3" style="margin-top: 130px; margin-left: 40px">
+            <h5>{{ user.username }}</h5>
+        </div>
+    </div>
+    <div class="p-4 text-black" style="background-color: #f8f9fa;">
+        <div class="d-flex justify-content-end text-center py-1">
+            <div>
+                <p class="mb-1 h5">253</p>
+                <p class="small text-muted mb-0">Photos</p>
+            </div>
+            <div class="px-3">
+                <p class="mb-1 h5">1026</p>
+                <p class="small text-muted mb-0">Followers</p>
+            </div>
+            <div>
+                <p class="mb-1 h5">478</p>
+                <p class="small text-muted mb-0">Following</p>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4 text-black" style="margin-top: 50px">
+        <div class="mb-5">
+            <p class="lead fw-normal mb-1">About</p>
+            <div class="p-4" style="background-color: #f8f9fa;">
+                <p class="font-italic mb-1">{{ user.profile.about }}</p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <p class="lead fw-normal mb-0">Recent photos</p>
+            <p class="mb-0"><a href="#!" class="text-muted">Show all</a></p>
+        </div>
+        <div class="row g-2">
+            <div class="col mb-2">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
+                     alt="image 1" class="w-100 rounded-3">
+            </div>
+            <div class="col mb-2">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
+                     alt="image 1" class="w-100 rounded-3">
+            </div>
+        </div>
+        <div class="row g-2">
+            <div class="col">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
+                     alt="image 1" class="w-100 rounded-3">
+            </div>
+            <div class="col">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
+                     alt="image 1" class="w-100 rounded-3">
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

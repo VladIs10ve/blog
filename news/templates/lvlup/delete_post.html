@@ -1,0 +1,18 @@
+{% extends 'lvlup/base.html' %}
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
+            <a href="/news" class="btn btn-dark btn-sm" style="border-radius: 30px;width: 30px;margin: 10px">&#8249;</a>
+            <div style="margin: auto; margin-top: 40px; margin-bottom: 40px; text-align: center">
+                <h2> Are you sure you want to delete post '{{ post.title }}' ? </h2>
+                <br><br/>
+                <form method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

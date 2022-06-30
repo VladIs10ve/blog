@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>LVLup</title>
+
+</head>
+<body>
+
+{#Navbar#}
+
+<header class="navbar navbar-expand-md navbar-dark bg-dark ">
+
+    <a class="navbar-brand" href=""><img src="/static/lvlup/img/logo.png" alt="" width="50"></a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+            <a class="nav-link active" href="/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-house" viewBox="0 0 16 16" style="margin-bottom: 3px">
+                    <path fill-rule="evenodd"
+                          d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                    <path fill-rule="evenodd"
+                          d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                </svg>
+                Home<span class="sr-only">(current)</span></a>
+
+        </li>
+
+
+    </ul>
+    {% block nav %}
+        <a href="user_profile">
+            <span class="" style="color: aquamarine;margin-right: 10px">Hello, {{ request.user }}</span>
+        </a>
+        <form class="form-inline my-2 my-lg-0 mr-sm-2">
+            {% if request.user.is_authenticated %}
+                <a class="btn btn-dark" href="/logout">Logout</a>
+            {% else %}
+                <a class="btn btn-dark" href="/registration">Register</a>
+                <a class="btn btn-dark" href="/login">Login</a>
+            {% endif %}
+        </form>
+    {% endblock %}
+
+</header>
+
+<p></p>
+
+
+<div class="container-fluid ">
+    <div class="row flex-xl-nowrap ">
+        {% block left_nav %}
+            <div class="col-12 col-md-3 col-xl-2 bd-sidebar ">
+                <nav class="nav flex-column sticky-top ">
+                    <p></p>
+                    <p></p>
+                    <a href="/user_profile" class="btn btn-light ">
+                        <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 3px" width="16" height="16"
+                             fill="currentColor"
+                             class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd"
+                                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg>
+                        My Profile
+                    </a>
+
+                    <a href="/news" class="btn btn-light">
+                        <svg style="margin-bottom: 3px" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                             fill="currentColor" class="bi bi-postcard-heart" viewBox="0 0 16 16">
+                            <path d="M8 4.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7Zm3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622ZM2.5 5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z"/>
+                            <path fill-rule="evenodd"
+                                  d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2Z"/>
+                        </svg>
+                        News
+                    </a>
+
+                    <a href="/messenger" class="btn btn-light">
+                        <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 3px" width="16" height="16"
+                             fill="currentColor" class="bi bi-chat-dots" viewBox="0 0 16 16">
+                            <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                            <path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z"/>
+                        </svg>
+                        Messenger
+                    </a>
+
+                    <button type="button" class="btn btn-light">
+                        <svg style="margin-bottom: 3px" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                             fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            <path fill-rule="evenodd"
+                                  d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                            <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                        </svg>
+                        Friends
+                    </button>
+                </nav>
+            </div>
+        {% endblock %}
+        <main class="col-8 ">
+            <div class="card shadow-lg" style="border-radius: 25px;margin-bottom: 100px ;margin-top: 15px">
+                {% block content %}
+                    <div class="card-body">
+                        Hunky Dory
+                        Дэвид Боуи в 1975 году
+                        Hunky Dory (на русский можно перевести как «Всё путём», «Без проблем», «Зашибись») — четвёртый
+                        студийный
+                        альбом британского рок-музыканта Дэвида Боуи, выпущенный лейблом RCA Records в 1971 году.
+                        Музыкант
+                        собрал
+                        новую аккомпанирующую группу, состоящую из гитариста Мика Ронсона, басиста Тревора Болдера и
+                        барабанщика
+                        Мика Вудманси, и начал записывать альбом в середине 1971 года на лондонской студии Trident
+                        Studios.
+                        В
+                        качестве сессионного пианиста в работе поучаствовал Рик Уэйкман. Боуи выступил сопродюсером
+                        диска
+                        наряду с
+                        Кеном Скоттом — звукорежиссёром двух предыдущих пластинок музыканта.
+
+                        Боуи выбрал для своей новой пластинки мелодичные направления: поп-рок, выстроенный на
+                        фортепьяно, и
+                        арт-поп.
+                        Тематика песен альбома варьируется от навязчивой природы художественного переосмысления в
+                        «Changes»
+                        до
+                        оккультизма и ницшеанской философии в «Oh! You Pretty Things» и «Quicksand»; несколько
+                        композиций
+                        содержат
+                        культурные и литературные отсылки. Одним из источников вдохновения стал американский гастрольный
+                        тур
+                        музыканта, благодаря которому появились песни, посвящённые трём местным культурным идолам: Энди
+                        Уорхолу,
+                        Бобу Дилану и Лу Риду. Композиция «Kooks» была посвящена новорождённому сыну Боуи — Данкану. На
+                        обложке
+                        альбома, сделанной в монохромном варианте и впоследствии перекрашенной вручную, музыкант
+                        изображён в
+                        позе,
+                        вдохновлённой актрисами «Золотого века» Голливуда.
+
+                        Альбом первоначально плохо продавался и не попал в чарты. Только после коммерческого прорыва
+                        следующего
+                        релиза музыканта — The Rise and Fall of Ziggy Stardust and the Spiders from Mars (1972) — Hunky
+                        Dory
+                        обрёл
+                        коммерческий успех, поднявшись до третьего места в UK Albums Chart. Ретроспективно он был
+                        признан
+                        критиками
+                        одной из лучших работ Боуи и включён в несколько списков лучших альбомов всех времён. Так, он
+                        стал
+                        одной из
+                        пяти пластинок музыканта, попавших в рейтинг Rolling Stone «500 величайших альбомов всех
+                        времен».
+                        Hunky Dory
+                        считается пластинкой, на которой «Боуи начинает становиться тем самым Боуи» и окончательно
+                        раскрывает свой
+                        талант и стиль.
+                        Hunky Dory
+                        Дэвид Боуи в 1975 году
+                        Hunky Dory (на русский можно перевести как «Всё путём», «Без проблем», «Зашибись») — четвёртый
+                        студийный
+                        альбом британского рок-музыканта Дэвида Боуи, выпущенный лейблом RCA Records в 1971 году.
+                        Музыкант
+                        собрал
+                        новую аккомпанирующую группу, состоящую из гитариста Мика Ронсона, басиста Тревора Болдера и
+                        барабанщика
+                        Мика Вудманси, и начал записывать альбом в середине 1971 года на лондонской студии Trident
+                        Studios.
+                        В
+                        качестве сессионного пианиста в работе поучаствовал Рик Уэйкман. Боуи выступил сопродюсером
+                        диска
+                        наряду с
+                        Кеном Скоттом — звукорежиссёром двух предыдущих пластинок музыканта.
+
+                        Боуи выбрал для своей новой пластинки мелодичные направления: поп-рок, выстроенный на
+                        фортепьяно, и
+                        арт-поп.
+                        Тематика песен альбома варьируется от навязчивой природы художественного переосмысления в
+                        «Changes»
+                        до
+                        оккультизма и ницшеанской философии в «Oh! You Pretty Things» и «Quicksand»; несколько
+                        композиций
+                        содержат
+                        культурные и литературные отсылки. Одним из источников вдохновения стал американский гастрольный
+                        тур
+                        музыканта, благодаря которому появились песни, посвящённые трём местным культурным идолам: Энди
+                        Уорхолу,
+                        Бобу Дилану и Лу Риду. Композиция «Kooks» была посвящена новорождённому сыну Боуи — Данкану. На
+                        обложке
+                        альбома, сделанной в монохромном варианте и впоследствии перекрашенной вручную, музыкант
+                        изображён в
+                        позе,
+                        вдохновлённой актрисами «Золотого века» Голливуда.
+
+                        Альбом первоначально плохо продавался и не попал в чарты. Только после коммерческого прорыва
+                        следующего
+                        релиза музыканта — The Rise and Fall of Ziggy Stardust and the Spiders from Mars (1972) — Hunky
+                        Dory
+                        обрёл
+                        коммерческий успех, поднявшись до третьего места в UK Albums Chart. Ретроспективно он был
+                        признан
+                        критиками
+                        одной из лучших работ Боуи и включён в несколько списков лучших альбомов всех времён. Так, он
+                        стал
+                        одной из
+                        пяти пластинок музыканта, попавших в рейтинг Rolling Stone «500 величайших альбомов всех
+                        времен».
+                        Hunky Dory
+                        считается пластинкой, на которой «Боуи начинает становиться тем самым Боуи» и окончательно
+                        раскрывает свой
+                        талант и стиль.Hunky Dory
+                        Дэвид Боуи в 1975 году
+                        Hunky Dory (на русский можно перевести как «Всё путём», «Без проблем», «Зашибись») — четвёртый
+                        студийный
+                        альбом британского рок-музыканта Дэвида Боуи, выпущенный лейблом RCA Records в 1971 году.
+                        Музыкант
+                        собрал
+                        новую аккомпанирующую группу, состоящую из гитариста Мика Ронсона, басиста Тревора Болдера и
+                        барабанщика
+                        Мика Вудманси, и начал записывать альбом в середине 1971 года на лондонской студии Trident
+                        Studios.
+                        В
+                        качестве сессионного пианиста в работе поучаствовал Рик Уэйкман. Боуи выступил сопродюсером
+                        диска
+                        наряду с
+                        Кеном Скоттом — звукорежиссёром двух предыдущих пластинок музыканта.
+
+                        Боуи выбрал для своей новой пластинки мелодичные направления: поп-рок, выстроенный на
+                        фортепьяно, и
+                        арт-поп.
+                        Тематика песен альбома варьируется от навязчивой природы художественного переосмысления в
+                        «Changes»
+                        до
+                        оккультизма и ницшеанской философии в «Oh! You Pretty Things» и «Quicksand»; несколько
+                        композиций
+                        содержат
+                        культурные и литературные отсылки. Одним из источников вдохновения стал американский гастрольный
+                        тур
+                        музыканта, благодаря которому появились песни, посвящённые трём местным культурным идолам: Энди
+                        Уорхолу,
+                        Бобу Дилану и Лу Риду. Композиция «Kooks» была посвящена новорождённому сыну Боуи — Данкану. На
+                        обложке
+                        альбома, сделанной в монохромном варианте и впоследствии перекрашенной вручную, музыкант
+                        изображён в
+                        позе,
+                        вдохновлённой актрисами «Золотого века» Голливуда.
+
+                        Альбом первоначально плохо продавался и не попал в чарты. Только после коммерческого прорыва
+                        следующего
+                        релиза музыканта — The Rise and Fall of Ziggy Stardust and the Spiders from Mars (1972) — Hunky
+                        Dory
+                        обрёл
+                        коммерческий успех, поднявшись до третьего места в UK Albums Chart. Ретроспективно он был
+                        признан
+                        критиками
+                        одной из лучших работ Боуи и включён в несколько списков лучших альбомов всех времён. Так, он
+                        стал
+                        одной из
+                        пяти пластинок музыканта, попавших в рейтинг Rolling Stone «500 величайших альбомов всех
+                        времен».
+                        Hunky Dory
+                        считается пластинкой, на которой «Боуи начинает становиться тем самым Боуи» и окончательно
+                        раскрывает свой
+                        талант и стиль.Hunky Dory
+                        Дэвид Боуи в 1975 году
+                        Hunky Dory (на русский можно перевести как «Всё путём», «Без проблем», «Зашибись») — четвёртый
+                        студийный
+                        альбом британского рок-музыканта Дэвида Боуи, выпущенный лейблом RCA Records в 1971 году.
+                        Музыкант
+                        собрал
+                        новую аккомпанирующую группу, состоящую из гитариста Мика Ронсона, басиста Тревора Болдера и
+                        барабанщика
+                        Мика Вудманси, и начал записывать альбом в середине 1971 года на лондонской студии Trident
+                        Studios.
+                        В
+                        качестве сессионного пианиста в работе поучаствовал Рик Уэйкман. Боуи выступил сопродюсером
+                        диска
+                        наряду с
+                        Кеном Скоттом — звукорежиссёром двух предыдущих пластинок музыканта.
+
+                        Боуи выбрал для своей новой пластинки мелодичные направления: поп-рок, выстроенный на
+                        фортепьяно, и
+                        арт-поп.
+                        Тематика песен альбома варьируется от навязчивой природы художественного переосмысления в
+                        «Changes»
+                        до
+                        оккультизма и ницшеанской философии в «Oh! You Pretty Things» и «Quicksand»; несколько
+                        композиций
+                        содержат
+                        культурные и литературные отсылки. Одним из источников вдохновения стал американский гастрольный
+                        тур
+                        музыканта, благодаря которому появились песни, посвящённые трём местным культурным идолам: Энди
+                        Уорхолу,
+                        Бобу Дилану и Лу Риду. Композиция «Kooks» была посвящена новорождённому сыну Боуи — Данкану. На
+                        обложке
+                        альбома, сделанной в монохромном варианте и впоследствии перекрашенной вручную, музыкант
+                        изображён в
+                        позе,
+                        вдохновлённой актрисами «Золотого века» Голливуда.
+
+                        Альбом первоначально плохо продавался и не попал в чарты. Только после коммерческого прорыва
+                        следующего
+                        релиза музыканта — The Rise and Fall of Ziggy Stardust and the Spiders from Mars (1972) — Hunky
+                        Dory
+                        обрёл
+                        коммерческий успех, поднявшись до третьего места в UK Albums Chart. Ретроспективно он был
+                        признан
+                        критиками
+                        одной из лучших работ Боуи и включён в несколько списков лучших альбомов всех времён. Так, он
+                        стал
+                        одной из
+                        пяти пластинок музыканта, попавших в рейтинг Rolling Stone «500 величайших альбомов всех
+                        времен».
+                        Hunky Dory
+                        считается пластинкой, на которой «Боуи начинает становиться тем самым Боуи» и окончательно
+                        раскрывает свой
+                        талант и стиль.
+                    </div>
+                {% endblock %}
+            </div>
+
+        </main>
+
+
+    </div>
+</div>
+
+<p></p>
+
+<footer class="bg-light text-center text-lg-start">
+    <!-- Grid container -->
+    <div class="container p-4">
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Links</h5>
+
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="#!" class="text-dark">Link 1</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Link 2</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Link 3</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Link 4</a>
+                    </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase mb-0">Links</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#!" class="text-dark">Link 1</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Link 2</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Link 3</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Link 4</a>
+                    </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Links</h5>
+
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="#!" class="text-dark">Link 1</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Link 2</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Link 3</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Link 4</a>
+                    </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase mb-0">Links</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#!" class="text-dark">Link 1</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Link 2</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Link 3</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Link 4</a>
+                    </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

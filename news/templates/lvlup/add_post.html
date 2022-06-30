@@ -1,0 +1,22 @@
+{% extends 'lvlup/base.html' %}
+
+
+{% block content %}
+    {% load crispy_forms_tags %}
+    <a href="/news" class="btn btn-dark btn-sm"
+       style="border-radius: 30px;width: 30px;margin: 10px;margin-bottom: -30px">&#8249;</a>
+    <div class="form-group" style="margin: auto; margin-top: 40px; margin-bottom: 40px">
+        <h1 style="text-align: center">Add post</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br><br/>
+            <button class="btn btn-primary">Post</button>
+        </form>
+    </div>
+    <script>
+        var name = '{{ user.id }}';
+        document.getElementById('user').value = name;
+    </script>
+
+{% endblock %}
