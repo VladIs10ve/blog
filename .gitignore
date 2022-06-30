@@ -1,2 +1,6 @@
 .env
 #private key
+
+.idea
+
+db.sqlite3
